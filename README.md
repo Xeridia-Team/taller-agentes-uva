@@ -80,7 +80,8 @@ The documents are of four kinds:
 `step4_eval.py` runs the step 1 agent on each document and scores:
 
 - `EqualsExpected`: the agent chose the expected category.
-- `tokens`: tokens used per document (model cost).
+- `tokens`: tokens used per document.
+- `cost_usd`: cost per document in US dollars, from the model prices in `genai-prices`.
 
 ## Ideas for step 5
 

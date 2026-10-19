@@ -8,6 +8,7 @@ async def classify(filename: str) -> Category:
     text = (DOCUMENTS_DIR / filename).read_text(encoding="utf-8")
     result = await agent.run(text)
     increment_eval_metric("tokens", result.usage.total_tokens)
+    increment_eval_metric("cost_usd", float(result.response.cost().total_price))
 
     return result.output.category
 
