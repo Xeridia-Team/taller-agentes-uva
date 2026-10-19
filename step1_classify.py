@@ -8,9 +8,9 @@ from workshop.common import Category, Confidence, model
 
 
 class Classification(BaseModel):
-    # TODO: add the fields `category` (Category), `confidence` (Confidence)
-    # and `reason` (str, use `Field` to describe it as one sentence explaining the choice)
-    pass
+    category: Category
+    confidence: Confidence
+    reason: str = Field(description="One sentence explaining the choice")
 
 
 INSTRUCTIONS = """\
@@ -23,8 +23,7 @@ at the University of Valladolid. Categories:
 - other: anything else.
 """
 
-# TODO: make the agent return a `Classification` (hint: `output_type`)
-agent = Agent(model, instructions=INSTRUCTIONS)
+agent = Agent(model, output_type=Classification, instructions=INSTRUCTIONS)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Classify a single document.")

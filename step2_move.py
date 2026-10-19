@@ -21,11 +21,11 @@ When the inbox is empty, reply with a short summary.
 agent = Agent(model, instructions=INSTRUCTIONS)
 
 
-# TODO: register this function as a tool with `@agent.tool_plain`
+@agent.tool_plain
 def list_documents() -> list[str]:
     """List the documents waiting in the inbox."""
-    # TODO: return the sorted names of the files in `WORKSPACE_DIR / "inbox"`
-    raise NotImplementedError
+
+    return sorted(path.name for path in (WORKSPACE_DIR / "inbox").iterdir())
 
 
 @agent.tool_plain
@@ -41,7 +41,7 @@ def read_document(filename: str) -> str:
     return path.read_text(encoding="utf-8")
 
 
-# TODO: register this function as a tool with `@agent.tool_plain`
+@agent.tool_plain
 def move_document(
     filename: str,
     category: Category,
@@ -49,9 +49,18 @@ def move_document(
     reason: str,
 ) -> str:
     """Move a document from the inbox to the tray of its category."""
-    # TODO: print the decision and move the file from `WORKSPACE_DIR / "inbox"`
-    # to the folder of its category, `WORKSPACE_DIR / category`, with `shutil.move`
-    raise NotImplementedError
+    print(f"{filename} -> {category} ({confidence}): {reason}")
+
+    source = WORKSPACE_DIR / "inbox" / filename
+    destination = WORKSPACE_DIR / category
+
+    if not source.exists():
+        return f"{filename} is not in the inbox"
+
+    destination.mkdir(exist_ok=True)
+    shutil.move(source, destination)
+
+    return f"{filename} moved to {category}/"
 
 
 if __name__ == "__main__":

@@ -26,8 +26,7 @@ agent.tool_plain(read_document)
 
 
 def needs_review(category: Category, confidence: Confidence) -> bool:
-    # TODO: a move needs review when the confidence is "low" or the category is "other"
-    raise NotImplementedError
+    return confidence == "low" or category == "other"
 
 
 @agent.tool_plain
@@ -40,9 +39,9 @@ def move_document(
     """Move a document from the inbox to the tray of its category."""
     print(f"{filename} -> {category} ({confidence}): {reason}")
 
-    # TODO: when the move needs review, ask the human with `input("Approve? [y/n] ")`.
-    # If the answer is not "y", ask for a comment with `input()` and return it
-    # to the agent instead of moving the file.
+    if needs_review(category, confidence) and input("Approve? [y/n] ") != "y":
+        comment = input("Comment for the agent: ")
+        return f"A human reviewer denied this move. Reviewer comment: {comment}"
 
     source = WORKSPACE_DIR / "inbox" / filename
     destination = WORKSPACE_DIR / category

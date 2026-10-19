@@ -103,5 +103,6 @@ cases:
     inputs: doc_20.txt
     expected_output: other
     metadata: {kind: out_of_scope}
+
 evaluators:
   - EqualsExpected
