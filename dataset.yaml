@@ -1,0 +1,107 @@
+cases:
+  - name: enrollment_add_course
+    inputs: doc_01.txt
+    expected_output: enrollment
+    metadata: {kind: clear}
+
+  - name: enrollment_payment_plan
+    inputs: doc_02.txt
+    expected_output: enrollment
+    metadata: {kind: clear}
+
+  - name: scholarship_status
+    inputs: doc_03.txt
+    expected_output: scholarships
+    metadata: {kind: clear}
+
+  - name: scholarship_erasmus_payment
+    inputs: doc_04.txt
+    expected_output: scholarships
+    metadata: {kind: clear}
+
+  - name: credit_transfer_vocational
+    inputs: doc_05.txt
+    expected_output: credit_transfer
+    metadata: {kind: clear}
+
+  - name: credit_transfer_other_university
+    inputs: doc_06.txt
+    expected_output: credit_transfer
+    metadata: {kind: clear}
+
+  - name: grade_appeal_exam_review
+    inputs: doc_07.txt
+    expected_output: grade_appeal
+    metadata: {kind: clear}
+
+  - name: grade_appeal_committee
+    inputs: doc_08.txt
+    expected_output: grade_appeal
+    metadata: {kind: clear}
+
+  - name: grade_appeal_honors
+    inputs: doc_21.txt
+    expected_output: grade_appeal
+    metadata: {kind: clear}
+
+  - name: ambiguous_transferred_course_failed
+    inputs: doc_11.txt
+    expected_output: credit_transfer
+    metadata: {kind: ambiguous}
+
+  - name: ambiguous_denied_scholarship_fee
+    inputs: doc_12.txt
+    expected_output: scholarships
+    metadata: {kind: ambiguous}
+
+  - name: ambiguous_erasmus_courses
+    inputs: doc_13.txt
+    expected_output: credit_transfer
+    metadata: {kind: ambiguous}
+
+  - name: ambiguous_thesis_grade_missing
+    inputs: doc_14.txt
+    expected_output: grade_appeal
+    metadata: {kind: ambiguous}
+
+  - name: insufficient_enrollment_error
+    inputs: doc_15.txt
+    expected_output: enrollment
+    metadata: {kind: insufficient}
+
+  - name: insufficient_status_question
+    inputs: doc_16.txt
+    expected_output: other
+    metadata: {kind: insufficient}
+
+  - name: insufficient_forward_no_attachment
+    inputs: doc_17.txt
+    expected_output: other
+    metadata: {kind: insufficient}
+
+  - name: out_of_scope_crypto_spam
+    inputs: doc_09.txt
+    expected_output: other
+    metadata: {kind: out_of_scope}
+
+  - name: out_of_scope_cafeteria
+    inputs: doc_10.txt
+    expected_output: other
+    metadata: {kind: out_of_scope}
+
+  - name: out_of_scope_parking
+    inputs: doc_18.txt
+    expected_output: other
+    metadata: {kind: out_of_scope}
+
+  - name: out_of_scope_internship_offer
+    inputs: doc_19.txt
+    expected_output: other
+    metadata: {kind: out_of_scope}
+
+  - name: out_of_scope_phishing
+    inputs: doc_20.txt
+    expected_output: other
+    metadata: {kind: out_of_scope}
+evaluators:
+  - EqualsExpected
