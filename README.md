@@ -13,7 +13,7 @@ Requirements: Python basics and [uv](https://docs.astral.sh/uv/).
 uv sync
 ```
 
-Copy `.env.example` to `.env` and fill in `OPENAI_API_KEY` with the key given in the workshop.
+Copy `.env.example` to `.env` and add the last 5 characters of `OPENAI_API_KEY`, given in the workshop.
 
 Check the connection to the model:
 
